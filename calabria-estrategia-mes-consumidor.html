@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calábria – Mês do Consumidor 2026</title>
+<style>
+  /* ─── RESET & BASE ─── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 15px; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #f2f2f2; color: #1a1a1a; line-height: 1.65; -webkit-text-size-adjust: 100%; }
+
+  /* ─── COVER ─── */
+  .cover {
+    background: linear-gradient(145deg, #b81c1c 0%, #7a0000 55%, #2e0000 100%);
+    color: #fff;
+    padding: 36px 20px 28px;
+  }
+  .cover .badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,0.14); border: 1px solid rgba(255,255,255,0.22);
+    font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase;
+    padding: 4px 12px; border-radius: 20px; margin-bottom: 16px;
+  }
+  .cover h1 { font-size: 28px; font-weight: 800; line-height: 1.2; margin-bottom: 6px; }
+  .cover h1 em { color: #ffb3b3; font-style: normal; }
+  .cover .sub { font-size: 13px; opacity: 0.82; margin-bottom: 20px; }
+  .cover .pills { display: flex; flex-wrap: wrap; gap: 6px; }
+  .cover .pill { background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.18); font-size: 11px; padding: 4px 12px; border-radius: 20px; }
+  .urgency-bar {
+    background: #fff3cd; border-top: 3px solid #e6a817; color: #7a4b00;
+    padding: 10px 20px; font-size: 13px; font-weight: 700;
+    display: flex; align-items: center; gap: 8px;
+  }
+
+  /* ─── TABS ─── */
+  .tab-nav {
+    display: flex; background: #fff;
+    border-bottom: 2px solid #eee;
+    position: sticky; top: 0; z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .tab-btn {
+    flex: 1; padding: 14px 10px; border: none; background: none;
+    font-size: 13px; font-weight: 600; color: #888; cursor: pointer;
+    border-bottom: 3px solid transparent; transition: all .2s; line-height: 1.3;
+  }
+  .tab-btn.active { color: #b81c1c; border-bottom-color: #b81c1c; background: #fff8f8; }
+  .tab-pane { display: none; }
+  .tab-pane.active { display: block; }
+
+  /* ─── CONTENT WRAPPER ─── */
+  .content { padding: 16px 16px 60px; max-width: 700px; margin: 0 auto; }
+
+  /* ─── SECTIONS ─── */
+  .section { background: #fff; border-radius: 14px; padding: 22px 20px; margin-bottom: 16px; box-shadow: 0 1px 6px rgba(0,0,0,0.06); }
+  .sec-hd { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 2px solid #f5f5f5; }
+  .ico { width: 40px; height: 40px; border-radius: 10px; background: #b81c1c; color: #fff; font-size: 20px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .sec-hd-txt h2 { font-size: 16px; font-weight: 700; }
+  .sec-hd-txt p { font-size: 11px; color: #999; margin-top: 2px; }
+
+  /* ─── TYPE ─── */
+  h3 { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #b81c1c; margin: 18px 0 8px; }
+  h3:first-child { margin-top: 0; }
+  p { font-size: 13px; color: #444; margin-bottom: 8px; }
+  strong { color: #111; }
+  em { font-style: italic; }
+
+  /* ─── GRID ─── */
+  .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .g3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px; }
+  @media (max-width: 520px) { .g2, .g3 { grid-template-columns: 1fr; } }
+
+  /* ─── CARD ─── */
+  .card { background: #fafafa; border: 1px solid #ebebeb; border-radius: 10px; padding: 14px 16px; }
+  .card .ct { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #b81c1c; margin-bottom: 6px; }
+  .card h4 { font-size: 13px; font-weight: 700; color: #111; margin-bottom: 6px; }
+  .card p { font-size: 12px; color: #555; margin-bottom: 5px; }
+
+  /* ─── TAGS ─── */
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .tag { font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 20px; }
+  .tag.red { background: #fde8e8; color: #b81c1c; }
+  .tag.dark { background: #b81c1c; color: #fff; }
+  .tag.gray { background: #eee; color: #555; }
+  .tag.green { background: #e6f9ee; color: #1a7a40; }
+  .tag.orange { background: #fff3e0; color: #c0580a; }
+  .tag.blue { background: #e8eeff; color: #3b5de8; }
+
+  /* ─── FUNIL ─── */
+  .fstep { display: flex; gap: 14px; padding: 14px 16px; border-radius: 10px; margin-bottom: 10px; }
+  .fstep.topo  { background: #fff5f5; border-left: 4px solid #e53935; }
+  .fstep.meio  { background: #fff8f0; border-left: 4px solid #e67e22; }
+  .fstep.fundo { background: #f0fff4; border-left: 4px solid #27ae60; }
+  .fstep.pos   { background: #f0f4ff; border-left: 4px solid #3b5de8; }
+  .fn { width: 34px; height: 34px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 800; color: #fff; flex-shrink: 0; }
+  .fn.t { background: #e53935; }
+  .fn.m { background: #e67e22; }
+  .fn.f { background: #27ae60; }
+  .fn.p { background: #3b5de8; }
+  .fc .fl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: #999; }
+  .fc .ft { font-size: 14px; font-weight: 700; color: #111; margin: 3px 0 5px; }
+  .fc p { font-size: 12px; }
+  .fc .fa { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+
+  /* ─── INSIGHT ─── */
+  .insight { display: flex; gap: 12px; background: #fafafa; border: 1px solid #eee; border-radius: 10px; padding: 14px 16px; margin: 12px 0; }
+  .ii { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+  .insight p { font-size: 12px; color: #444; margin: 0; }
+
+  /* ─── HIGHLIGHT ─── */
+  .hl-box { background: linear-gradient(135deg, #fff0f0, #ffe5e5); border: 1px solid #f5c5c5; border-radius: 10px; padding: 14px 16px; margin-top: 12px; }
+  .hl-box p { font-size: 12px; color: #7a0000; margin: 0; }
+
+  /* ─── REMARKETING ─── */
+  .rbox { background: #111; color: #fff; border-radius: 12px; padding: 22px 20px; }
+  .rbox h3 { color: #e53935; }
+  .rstep { display: flex; gap: 12px; margin-bottom: 16px; }
+  .rstep:last-child { margin-bottom: 0; }
+  .rbadge { background: #b81c1c; color: #fff; font-size: 10px; font-weight: 700; padding: 3px 9px; border-radius: 6px; white-space: nowrap; margin-top: 2px; height: fit-content; }
+  .rstep .rt { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 3px; }
+  .rstep p { font-size: 12px; color: #999; margin: 0; }
+
+  /* ─── TABLE ─── */
+  .tbl-wrap { overflow-x: auto; margin: 0 -4px; }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; min-width: 420px; }
+  thead { background: #b81c1c; color: #fff; }
+  th { padding: 10px 12px; text-align: left; font-size: 11px; font-weight: 600; letter-spacing: 0.5px; }
+  td { padding: 10px 12px; border-bottom: 1px solid #f0f0f0; vertical-align: top; color: #444; }
+  .hlc { color: #b81c1c; font-weight: 700; }
+
+  /* ─── ICP GRID ─── */
+  .icp-grid { border: 1px solid #ebebeb; border-radius: 10px; overflow: hidden; }
+  .icp-row { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid #ebebeb; }
+  .icp-row:last-child { border-bottom: none; }
+  .icp-cell { padding: 14px 16px; }
+  .icp-cell:first-child { border-right: 1px solid #ebebeb; }
+  .icp-cell .lbl { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #999; margin-bottom: 4px; }
+  .icp-cell .val { font-size: 13px; font-weight: 700; color: #111; }
+  .icp-cell .desc { font-size: 11px; color: #666; margin-top: 2px; line-height: 1.5; }
+
+  /* ─── TIMELINE ─── */
+  .tl { position: relative; padding-left: 22px; }
+  .tl::before { content: ''; position: absolute; left: 5px; top: 8px; bottom: 0; width: 2px; background: #f0e0e0; }
+  .tl-item { position: relative; padding-bottom: 22px; }
+  .tl-item::before { content: ''; position: absolute; left: -19px; top: 5px; width: 12px; height: 12px; border-radius: 50%; background: #b81c1c; border: 2px solid #fff; box-shadow: 0 0 0 2px #b81c1c; }
+  .tl-week { font-size: 10px; font-weight: 700; color: #b81c1c; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 3px; }
+  .tl-title { font-size: 13px; font-weight: 700; color: #111; margin-bottom: 4px; }
+
+  /* ════════════════════════════════════════
+     TAB 2 — ROTEIROS
+  ════════════════════════════════════════ */
+
+  /* SCRIPT CARD */
+  .scard {
+    background: #fff; border-radius: 14px;
+    overflow: hidden; margin-bottom: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    border-top: 5px solid #b81c1c;
+  }
+  .scard.piso { border-top-color: #1a6bb8; }
+  .scard-head { padding: 18px 20px 14px; }
+  .scard-type { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #b81c1c; margin-bottom: 6px; }
+  .scard.piso .scard-type { color: #1a6bb8; }
+  .scard-head h2 { font-size: 17px; font-weight: 800; color: #111; line-height: 1.3; }
+  .scard-meta { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .scard-meta .m { font-size: 11px; background: #f5f5f5; padding: 3px 10px; border-radius: 6px; color: #555; }
+  .scard-meta .m strong { color: #b81c1c; }
+  .scard.piso .scard-meta .m strong { color: #1a6bb8; }
+
+  /* SCENE BLOCKS */
+  .scenes { padding: 0 20px 20px; }
+  .scene { border-left: 3px solid #eee; padding: 12px 14px; margin-bottom: 10px; border-radius: 0 8px 8px 0; background: #fafafa; }
+  .scene.abertura { border-left-color: #e53935; background: #fff8f8; }
+  .scene.dev      { border-left-color: #e67e22; background: #fffaf5; }
+  .scene.cta      { border-left-color: #27ae60; background: #f5fff8; }
+  .scene-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 5px; }
+  .scene.abertura .scene-label { color: #e53935; }
+  .scene.dev .scene-label      { color: #e67e22; }
+  .scene.cta .scene-label      { color: #27ae60; }
+  .scene .tempo { font-size: 10px; color: #aaa; float: right; font-weight: 600; }
+  .scene p { font-size: 13px; color: #333; margin-bottom: 5px; }
+  .scene p:last-child { margin-bottom: 0; }
+  .scene .fala { background: #fff; border: 1px solid #e8e8e8; border-radius: 8px; padding: 10px 12px; font-size: 13px; color: #111; font-style: italic; margin: 6px 0; line-height: 1.6; }
+  .scene .fala::before { content: '"'; color: #b81c1c; font-weight: 900; font-style: normal; font-size: 18px; line-height: 1; }
+  .scene .fala::after  { content: '"'; color: #b81c1c; font-weight: 900; font-style: normal; font-size: 18px; line-height: 1; }
+  .scard.piso .scene.abertura { border-left-color: #1a6bb8; background: #f5f9ff; }
+  .scard.piso .scene .fala::before,
+  .scard.piso .scene .fala::after { color: #1a6bb8; }
+
+  /* OBJECTIVE ROW */
+  .obj-row { background: #111; padding: 14px 20px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .obj-item { font-size: 11px; background: #1e1e1e; color: #ccc; padding: 4px 10px; border-radius: 6px; }
+  .obj-item strong { color: #e53935; }
+  .scard.piso .obj-item strong { color: #5aaeff; }
+
+  /* DIVIDER between script groups */
+  .group-label {
+    font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 2px;
+    color: #999; margin: 24px 0 12px; display: flex; align-items: center; gap: 10px;
+  }
+  .group-label::after { content: ''; flex: 1; height: 1px; background: #ddd; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="badge">📅 12 de Março · 3 dias pro Dia do Consumidor</div>
+  <h1>Mês do Consumidor<br><em>Calábria Decorações</em></h1>
+  <div class="sub">Estratégia Completa + Roteiros Prontos para Produção</div>
+  <div class="pills">
+    <span class="pill">📍 Maricá · RJ</span>
+    <span class="pill">🏠 Móveis | Pisos | Revestimentos</span>
+    <span class="pill">📅 Desde 1994</span>
+    <span class="pill">🎯 Gerar Leads</span>
+  </div>
+</div>
+
+<div class="urgency-bar">
+  ⚠️ Hoje é dia 12/03 — <strong>faltam 3 dias para o pico da campanha (15/03).</strong> Prioridade máxima: produzir os vídeos ainda essa semana.
+</div>
+
+<!-- TABS -->
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="switchTab('estrategia', this)">📋 Estratégia</button>
+  <button class="tab-btn" onclick="switchTab('roteiros', this)">🎬 Roteiros</button>
+</div>
+
+<!-- ════════════ TAB 1: ESTRATÉGIA ════════════ -->
+<div id="estrategia" class="tab-pane active">
+<div class="content">
+
+  <!-- URGÊNCIA DE TIMING -->
+  <div class="section">
+    <div class="sec-hd">
+      <div class="ico">⚡</div>
+      <div class="sec-hd-txt">
+        <h2>Situação Atual — Dia 12/03</h2>
+        <p>O que fazer agora com 3 dias para o pico</p>
+      </div>
+    </div>
+    <div class="g2">
+      <div class="card">
+        <div class="ct">🔥 Hoje e amanhã (12–13)</div>
+        <p>Produzir os <strong>4 roteiros de vídeo</strong> (roteiros prontos na aba ao lado). Configurar WhatsApp Business com mensagem de boas-vindas da campanha.</p>
+      </div>
+      <div class="card">
+        <div class="ct">🚀 Dia 14–15</div>
+        <p>Gravar, editar e <strong>subir os vídeos.</strong> Ativar campanhas de conversão no Meta Ads focadas em Mensagens e Click-to-WhatsApp para o pico do dia 15.</p>
+      </div>
+      <div class="card">
+        <div class="ct">📅 16–31/03</div>
+        <p>Manter campanha ativa com <strong>urgência crescente.</strong> Ativar remarketing. Sequência de follow-up no WhatsApp para leads que não fecharam.</p>
+      </div>
+      <div class="card">
+        <div class="ct">🎯 Prioridade agora</div>
+        <p>Concentrar <strong>80% do orçamento</strong> em Feeds + Reels. Segmentação geolocalizada: <strong>Maricá + raio de 15km.</strong> Desativar Audience Network.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- MERCADO VALIDADO -->
+  <div class="section">
+    <div class="sec-hd">
+      <div class="ico">📊</div>
+      <div class="sec-hd-txt">
+        <h2>O Que o Mercado Validou</h2>
+        <p>Dados reais do nicho de decoração e do Mês do Consumidor</p>
+      </div>
+    </div>
+    <div class="g2">
+      <div class="card">
+        <div class="ct">📈 Resultado 2025</div>
+        <p>O varejo brasileiro movimentou <strong>R$ 8,3 bilhões</strong> no Mês do Consumidor 2025 — com <strong>+21% em vendas</strong> e <strong>+36% em visitas</strong> frente a fevereiro. O consumidor <em>espera pelas ofertas.</em></p>
+      </div>
+      <div class="card">
+        <div class="ct">🧭 Comportamento 2026</div>
+        <p>O consumidor decide pela <strong>jornada, não só pelo desconto.</strong> 34% pesquisam online antes de comprar fisicamente. A Calábria precisa capturar o lead online e converter na loja.</p>
+      </div>
+    </div>
+    <h3>O Que Funciona Para Lojas de Decoração e Móveis</h3>
+    <div class="g2">
+      <div class="card">
+        <div class="ct">✅ Validado</div>
+        <h4>Antes &amp; Depois</h4>
+        <p>Vídeos de transformação de ambiente geram alto engajamento e identificação imediata com o ICP.</p>
+      </div>
+      <div class="card">
+        <div class="ct">✅ Validado</div>
+        <h4>Click-to-WhatsApp</h4>
+        <p>Maior conversão de leads para negócios locais. O usuário clica e já abre a conversa — zero fricção.</p>
+      </div>
+      <div class="card">
+        <div class="ct">✅ Validado</div>
+        <h4>Reels hiper-locais</h4>
+        <p>Rostos reais, fachada da loja e ambiente físico geram credibilidade e reduzem a barreira de visita.</p>
+      </div>
+      <div class="card">
+        <div class="ct">✅ Validado</div>
+        <h4>Geolocalização</h4>
+        <p>72% dos consumidores visitam loja a até 8km após ver anúncio geolocalizado. Maricá + 15km é o raio ideal.</p>
+      </div>
+      <div class="card">
+        <div class="ct">✅ Validado</div>
+        <h4>CTA para benefício</h4>
+        <p>Ao invés de "compre seu piso": <em>"garanta o ambiente que você sempre quis."</em> Vende a transformação.</p>
+      </div>
+      <div class="card">
+        <div class="ct">✅ Validado</div>
+        <h4>Remarketing por vídeo</h4>
+        <p>Audiência de quem assistiu 50%+ do vídeo tem custo por lead <strong>3 a 5x menor</strong> que cold audience.</p>
+      </div>
+    </div>
+    <div class="insight">
+      <div class="ii">💡</div>
+      <p><strong>Insight-chave:</strong> O maior erro é usar redes sociais só como vitrine de produto. O que converte é <strong>transformação + urgência real + CTA direto para conversa.</strong> Feeds e Reels têm o maior histórico comprovado para este nicho na Meta.</p>
+    </div>
+  </div>
+
+  <!-- ICP -->
+  <div class="section">
+    <div class="sec-hd">
+      <div class="ico">🎯</div>
+      <div class="sec-hd-txt">
+        <h2>ICP — Perfil do Cliente Ideal</h2>
+        <p>Quem impactar e o que move a decisão de compra</p>
+      </div>
+    </div>
+    <div class="icp-grid">
+      <div class="icp-row">
+        <div class="icp-cell">
+          <div class="lbl">Perfil Primário</div>
+          <div class="val">Mulher, 28–50 anos</div>
+          <div class="desc">Moradora de Maricá, responsável pelas decisões do lar</div>
+        </div>
+        <div class="icp-cell">
+          <div class="lbl">Renda</div>
+          <div class="val">Classe C+ / B</div>
+          <div class="desc">Busca custo-benefício — quer sentir que fez um bom negócio</div>
+        </div>
+      </div>
+      <div class="icp-row">
+        <div class="icp-cell">
+          <div class="lbl">Momento de Vida</div>
+          <div class="val">Reforma ou casa nova</div>
+          <div class="desc">Recém comprou imóvel, está reformando ou quer renovar</div>
+        </div>
+        <div class="icp-cell">
+          <div class="lbl">Digital</div>
+          <div class="val">Instagram + WhatsApp</div>
+          <div class="desc">Salva posts de decoração. Responde rápido no WhatsApp quando tem interesse real</div>
+        </div>
+      </div>
+      <div class="icp-row">
+        <div class="icp-cell">
+          <div class="lbl">Dores</div>
+          <div class="val">Insegurança · Custo · Prazo</div>
+          <div class="desc">"Não sei o que combina", "Vai sair caro?", "A loja é confiável?"</div>
+        </div>
+        <div class="icp-cell">
+          <div class="lbl">O Que Quer Ouvir</div>
+          <div class="val">Autoridade · Facilidade</div>
+          <div class="desc">"30 anos em Maricá", "A gente te ajuda a escolher tudo"</div>
+        </div>
+      </div>
+    </div>
+    <div class="hl-box">
+      <p><strong>Gatilhos validados para toda comunicação:</strong> pertencimento ("seu lar dos sonhos"), confiança ("30 anos em Maricá"), urgência ("só este mês") e transformação ("antes x depois").</p>
+    </div>
+  </div>
+
+  <!-- FUNIL -->
+  <div class="section">
+    <div class="sec-hd">
+      <div class="ico">🔻</div>
+      <div class="sec-hd-txt">
+        <h2>Funil de Vendas — Jornada do Lead</h2>
+        <p>Cada etapa com objetivo, conteúdo e KPI</p>
+      </div>
+    </div>
+
+    <div class="fstep topo">
+      <div class="fn t">01</div>
+      <div class="fc">
+        <div class="fl">Topo · Consciência</div>
+        <div class="ft">Descoberta — Parar o scroll e criar desejo</div>
+        <p>Reels Antes &amp; Depois, ambientes inspiradores. Sem venda direta aqui.</p>
+        <div class="fa">
+          <span class="tag orange">Reels Antes &amp; Depois</span>
+          <span class="tag orange">Objetivo Meta: Visualização</span>
+        </div>
+        <p style="margin-top:8px;font-size:11px;"><strong>KPI:</strong> CPV · Alcance · Retenção 50%+</p>
+      </div>
+    </div>
+
+    <div class="fstep meio">
+      <div class="fn m">02</div>
+      <div class="fc">
+        <div class="fl">Meio · Consideração</div>
+        <div class="ft">Interesse — Gerar confiança e quebrar objeções</div>
+        <p>Depoimentos reais, tour pela loja, "30 anos em Maricá". Remarketing camadas 1 e 2.</p>
+        <div class="fa">
+          <span class="tag orange">Prova Social</span>
+          <span class="tag orange">Objetivo Meta: Engajamento</span>
+        </div>
+        <p style="margin-top:8px;font-size:11px;"><strong>KPI:</strong> CPC · Engajamento · Conversas WhatsApp</p>
+      </div>
+    </div>
+
+    <div class="fstep fundo">
+      <div class="fn f">03</div>
+      <div class="fc">
+        <div class="fl">Fundo · Conversão</div>
+        <div class="ft">Decisão — Fazer o lead entrar em contato agora</div>
+        <p>Oferta Mês do Consumidor + urgência + Click-to-WhatsApp direto. Lead quente precisa só do empurrão.</p>
+        <div class="fa">
+          <span class="tag green">Click-to-WhatsApp</span>
+          <span class="tag green">Objetivo Meta: Mensagens/Leads</span>
+        </div>
+        <p style="margin-top:8px;font-size:11px;"><strong>KPI:</strong> CPL · Conversas iniciadas</p>
+      </div>
+    </div>
+
+    <div class="fstep pos">
+      <div class="fn p">04</div>
+      <div class="fc">
+        <div class="fl">Pós-Funil · Retenção</div>
+        <div class="ft">Relacionamento — Nutrir quem não fechou na primeira conversa</div>
+        <p>Sequência de follow-up no WhatsApp + remarketing camadas 3 e 4 para quem clicou mas não converteu.</p>
+        <div class="fa">
+          <span class="tag blue">Follow-up WhatsApp</span>
+          <span class="tag blue">Remarketing</span>
+        </div>
+        <p style="margin-top:8px;font-size:11px;"><strong>KPI:</strong> Taxa de resposta · Conversões em 7–15 dias</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- REMARKETING -->
+  <div class="section">
+    <div class="sec-hd">
+      <div class="ico">🔁</div>
+      <div class="sec-hd-txt">
+        <h2>Estratégia de Remarketing</h2>
+        <p>4 camadas — custo por lead muito menor que cold audience</p>
+      </div>
+    </div>
+    <div class="rbox">
+      <h3>Fluxo de 4 Camadas</h3>
+      <div class="rstep">
+        <div class="rbadge">CAM 1</div>
+        <div>
+          <div class="rt">Assistiu 50%+ do vídeo de topo</div>
+          <p>Anúncio de prova social + autoridade. "Você viu nossos ambientes. Agora conheça quem os transformou." CTA para WhatsApp.</p>
+        </div>
+      </div>
+      <div class="rstep">
+        <div class="rbadge">CAM 2</div>
+        <div>
+          <div class="rt">Curtiu, comentou ou salvou qualquer post</div>
+          <p>Anúncio de oferta Mês do Consumidor. "Você já conhece a Calábria. Agora é hora de garantir sua condição."</p>
+        </div>
+      </div>
+      <div class="rstep">
+        <div class="rbadge">CAM 3</div>
+        <div>
+          <div class="rt">Clicou no anúncio mas não enviou mensagem</div>
+          <p>Carrossel com produtos + urgência crescente. "Faltam X dias para a condição encerrar."</p>
+        </div>
+      </div>
+      <div class="rstep">
+        <div class="rbadge">CAM 4</div>
+        <div>
+          <div class="rt">Enviou mensagem mas não fechou compra</div>
+          <p>Sequência WhatsApp: D+1 confirmar interesse · D+4 fotos de produtos · D+7 última oferta.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTAs E COMUNICAÇÃO -->
+  <div class="section">
+    <div class="sec-hd">
+      <div class="ico">📣</div>
+      <div class="sec-hd-txt">
+        <h2>Comunicação Alinhada por Canal</h2>
+        <p>Tom, frases-âncora e gatilhos por etapa</p>
+      </div>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>Canal</th><th>Etapa</th><th>CTA validado</th></tr>
+        </thead>
+        <tbody>
+          <tr><td class="hlc">Instagram Reels</td><td>Topo</td><td>"É assim que fica quando você conhece a Calábria."</td></tr>
+          <tr><td class="hlc">Feed / Stories</td><td>Meio</td><td>"30 anos transformando lares em Maricá."</td></tr>
+          <tr><td class="hlc">Facebook Feed</td><td>Fundo</td><td>"Mês do Consumidor — garanta sua condição agora."</td></tr>
+          <tr><td class="hlc">WhatsApp</td><td>Fundo/Pós</td><td>"Oi [nome], posso te mostrar opções para o seu espaço?"</td></tr>
+          <tr><td class="hlc">Stories orgânico</td><td>Meio</td><td>"Acabamos de receber essa coleção 😍 Chama pra ver!"</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>Frases-Âncora</h3>
+    <div class="tags">
+      <span class="tag dark">"Tudo para a sua casa, a Calábria tem."</span>
+      <span class="tag red">"30 anos de história em Maricá."</span>
+      <span class="tag red">"Mês do Consumidor. Sua casa, seu momento."</span>
+      <span class="tag gray">"Venha conhecer ou fale pelo WhatsApp."</span>
+    </div>
+    <h3>Gatilhos Prioritários</h3>
+    <div class="g3">
+      <div class="card">
+        <div class="ct">🕐 Urgência</div>
+        <p>"Válido até 31/03." Limite real — o Mês do Consumidor é a justificativa perfeita.</p>
+      </div>
+      <div class="card">
+        <div class="ct">🏆 Autoridade</div>
+        <p>"Desde 1994." Diferencial que concorrentes novos não têm.</p>
+      </div>
+      <div class="card">
+        <div class="ct">👥 Prova Social</div>
+        <p>Depoimento de cliente local em vídeo vale mais que qualquer promessa de marca.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- CALENDÁRIO AJUSTADO -->
+  <div class="section">
+    <div class="sec-hd">
+      <div class="ico">📅</div>
+      <div class="sec-hd-txt">
+        <h2>Calendário Ajustado — A partir de hoje</h2>
+        <p>Estamos no dia 12. A campanha começa agora.</p>
+      </div>
+    </div>
+    <div class="tl">
+      <div class="tl-item">
+        <div class="tl-week">Hoje · 12/03 — URGENTE</div>
+        <div class="tl-title">🎬 Aprovar roteiros e iniciar produção dos vídeos</div>
+        <p>Roteiros prontos na aba ao lado. Aprovação e início de gravação hoje. Configurar WhatsApp Business e mensagens automáticas da campanha.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-week">13–14/03</div>
+        <div class="tl-title">✂️ Edição, subida e pré-campanha</div>
+        <p>Editar vídeos e subir como Reels. Ativar campanhas de topo (visualização de vídeo) para aquecer audiência antes do dia 15. Publicar Stories de aquecimento.</p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-week">15/03 · DIA DO CONSUMIDOR · Pico</div>
+        <div class="tl-title">🚀 Conversão máxima — Todo esforço concentrado aqui</div>
+        <p>Aumentar verba de anúncios. Ativar campanha de fundo (Click-to-WhatsApp). Stories com urgência máxima. Equipe pronta para alto volume de mensagens no WhatsApp — <strong>tempo de resposta é decisivo.</strong></p>
+      </div>
+      <div class="tl-item">
+        <div class="tl-week">16–31/03 · Extensão</div>
+        <div class="tl-title">♻️ Colher os leads que ainda não converteram</div>
+        <p>Urgência crescente até 31/03. Remarketing camadas 3 e 4. Follow-up no WhatsApp. Última chamada: "Últimos dias — condições encerram dia 31."</p>
+      </div>
+    </div>
+    <div class="hl-box">
+      <p><strong>Dado 2026:</strong> Marcas que começam em 01/03 capturam orçamento antes da concorrência. Ainda dá tempo — o Mês do Consumidor vai até dia 31. <strong>Não perca a segunda semana.</strong></p>
+    </div>
+  </div>
+
+</div><!-- /content -->
+</div><!-- /tab estrategia -->
+
+
+<!-- ════════════ TAB 2: ROTEIROS ════════════ -->
+<div id="roteiros" class="tab-pane">
+<div class="content" style="padding-top:20px;">
+
+<style>
+/* ── SCRIPT CARD REDESIGN ── */
+.sc2 {
+  background: #fff;
+  border-radius: 14px;
+  margin-bottom: 24px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+  overflow: hidden;
+}
+.sc2-bar {
+  display: flex; align-items: center; gap: 10px;
+  padding: 14px 18px 10px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.sc2-num {
+  width: 30px; height: 30px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 800; color: #fff; flex-shrink: 0;
+}
+.loja .sc2-num { background: #b81c1c; }
+.piso .sc2-num { background: #1a6bb8; }
+.sc2-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; }
+.loja .sc2-label { color: #b81c1c; }
+.piso .sc2-label { color: #1a6bb8; }
+.sc2-title {
+  padding: 14px 18px 10px;
+  font-size: 15px; font-weight: 800; color: #111; line-height: 1.35;
+  border-bottom: 2px solid #f5f5f5;
+}
+/* THE SCRIPT — clean reading flow */
+.script-body {
+  padding: 18px 18px 0;
+}
+.script-line {
+  display: flex; gap: 10px; margin-bottom: 14px; align-items: flex-start;
+}
+.sl-time {
+  font-size: 10px; font-weight: 700; color: #bbb;
+  white-space: nowrap; min-width: 38px; margin-top: 3px;
+  font-variant-numeric: tabular-nums;
+}
+.sl-body { flex: 1; }
+.sl-type {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; margin-bottom: 4px;
+}
+.loja .sl-type { color: #b81c1c; }
+.piso .sl-type { color: #1a6bb8; }
+.sl-visual {
+  font-size: 12px; color: #888; font-style: italic;
+  margin-bottom: 5px; line-height: 1.5;
+}
+.sl-copy {
+  font-size: 14px; font-weight: 700; color: #111;
+  line-height: 1.6; background: #f9f9f9;
+  border-radius: 8px; padding: 10px 14px;
+  border-left: 3px solid #ddd;
+}
+.loja .sl-copy { border-left-color: #b81c1c; }
+.piso .sl-copy { border-left-color: #1a6bb8; }
+.sl-screen {
+  font-size: 11px; color: #666; margin-top: 5px;
+  display: flex; align-items: flex-start; gap: 4px;
+}
+.sl-screen::before { content: '📲'; font-size: 11px; flex-shrink:0; }
+
+/* DIVIDER between lines */
+.script-div { border: none; border-top: 1px dashed #eee; margin: 2px 0 14px; }
+
+/* TECHNICAL BLOCK */
+.sc2-tech {
+  background: #111; padding: 14px 18px;
+  display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px;
+}
+.sc2-tech .ti {
+  font-size: 11px; background: #1e1e1e; color: #ccc;
+  padding: 4px 10px; border-radius: 6px; line-height: 1.4;
+}
+.loja .sc2-tech .ti strong { color: #ff8080; }
+.piso .sc2-tech .ti strong { color: #5aaeff; }
+
+/* TRIGGERS BLOCK */
+.triggers {
+  padding: 12px 18px 16px;
+  background: #fafafa;
+  border-top: 1px solid #f0f0f0;
+}
+.triggers .tg-title {
+  font-size: 10px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 1px; color: #999; margin-bottom: 8px;
+}
+.triggers .tg-list { display: flex; flex-wrap: wrap; gap: 6px; }
+.triggers .tg { font-size: 11px; padding: 3px 10px; border-radius: 20px; font-weight: 600; }
+.loja .tg { background: #fde8e8; color: #b81c1c; }
+.piso .tg { background: #e0eeff; color: #1a6bb8; }
+
+/* GROUP LABEL */
+.glabel {
+  font-size: 11px; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 2px; color: #aaa;
+  margin: 22px 0 12px;
+  display: flex; align-items: center; gap: 10px;
+}
+.glabel::after { content: ''; flex: 1; height: 1px; background: #e0e0e0; }
+</style>
+
+
+  <!-- ── INTRO NOTE ── -->
+  <div class="insight" style="margin-top:0; margin-bottom:20px;">
+    <div class="ii">📌</div>
+    <p><strong>4 roteiros prontos para gravar.</strong> O script completo flui sem interrupção. Informações técnicas e de campanha ficam no bloco escuro abaixo de cada roteiro.</p>
+  </div>
+
+  <!-- ══ GRUPO 1: LOJA FÍSICA ══ -->
+  <div class="glabel">📍 Loja Física — Roteiros 01 e 02</div>
+
+  <!-- ── ROTEIRO 01 ── -->
+  <div class="sc2 loja">
+    <div class="sc2-bar">
+      <div class="sc2-num">01</div>
+      <div class="sc2-label">Loja Física · Autoridade + Curiosidade</div>
+    </div>
+    <div class="sc2-title">
+      Loja desconhecida pelo público local — despertar curiosidade e gerar primeira visita
+    </div>
+
+    <div class="script-body">
+
+      <div class="script-line">
+        <div class="sl-time">0 – 3s</div>
+        <div class="sl-body">
+          <div class="sl-type">ABERTURA — Hook</div>
+          <div class="sl-visual">Câmera entrando devagar pela fachada da loja ou corredor de pisos. Movimento lento, qualidade visual alta.</div>
+          <div class="sl-copy">Você mora em Maricá e ainda não conhece a Calábria?</div>
+          <div class="sl-screen">Texto grande na tela. Voz firme. Sem música alta ainda.</div>
+        </div>
+      </div>
+
+      <hr class="script-div">
+
+      <div class="script-line">
+        <div class="sl-time">3 – 20s</div>
+        <div class="sl-body">
+          <div class="sl-type">DESENVOLVIMENTO — Prova de valor</div>
+          <div class="sl-visual">Tour rápido pela loja. Cortes de 2–3s: pisos, revestimentos, móveis, marmoraria, equipe atendendo clientes reais. Trilha leve e envolvente entra aqui.</div>
+          <div class="sl-copy">Aqui você encontra pisos, revestimentos, móveis e marmoraria — tudo em um só lugar. Com atendimento de quem entende de verdade.</div>
+          <div class="sl-screen">Texto na tela: "Desde 1994 em Maricá" · "Tudo para a sua casa aqui."</div>
+        </div>
+      </div>
+
+      <hr class="script-div">
+
+      <div class="script-line">
+        <div class="sl-time">20 – 32s</div>
+        <div class="sl-body">
+          <div class="sl-type">CTA — Chamada para a loja</div>
+          <div class="sl-visual">Fundo vermelho Calábria. Logo centralizada. Endereço e número visíveis na tela.</div>
+          <div class="sl-copy">Esse mês tem condições especiais do Mês do Consumidor. Vem nos visitar ou chama no WhatsApp — a gente te ajuda a montar o ambiente perfeito pra você.</div>
+          <div class="sl-screen">Botão: "Como Chegar" + "Falar no WhatsApp" · Endereço completo em tela.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="triggers">
+      <div class="tg-title">Gatilhos utilizados</div>
+      <div class="tg-list">
+        <span class="tg">Curiosidade local</span>
+        <span class="tg">Autoridade (30 anos)</span>
+        <span class="tg">Conveniência (tudo em um lugar)</span>
+        <span class="tg">Urgência suave (esse mês)</span>
+        <span class="tg">Pertencimento (Maricá)</span>
+      </div>
+    </div>
+    <div class="sc2-tech loja">
+      <div class="ti"><strong>Duração:</strong> 30–35s</div>
+      <div class="ti"><strong>Formato:</strong> Reels 9:16</div>
+      <div class="ti"><strong>Objetivo Meta:</strong> Tráfego / Mensagens</div>
+      <div class="ti"><strong>Audiência:</strong> Cold · Maricá + 15km</div>
+      <div class="ti"><strong>CTA:</strong> Click-to-Maps + Click-to-WhatsApp</div>
+      <div class="ti"><strong>Veicular em:</strong> Reels · Stories · Facebook Feed</div>
+    </div>
+  </div>
+
+  <!-- ── ROTEIRO 02 ── -->
+  <div class="sc2 loja">
+    <div class="sc2-bar">
+      <div class="sc2-num">02</div>
+      <div class="sc2-label">Loja Física · Urgência + Oferta direta</div>
+    </div>
+    <div class="sc2-title">
+      Oferta com prazo real — converter quem já conhece a loja em visita física agora
+    </div>
+
+    <div class="script-body">
+
+      <div class="script-line">
+        <div class="sl-time">0 – 3s</div>
+        <div class="sl-body">
+          <div class="sl-type">ABERTURA — Urgência imediata</div>
+          <div class="sl-visual">Texto animado ocupando a tela inteira. Fundo escuro ou vermelho. Sem apresentação — direto ao ponto.</div>
+          <div class="sl-copy">MÊS DO CONSUMIDOR. Só até dia 31 de março.</div>
+          <div class="sl-screen">Fonte grande, negrito, animação de entrada rápida. Impacto visual total nos primeiros frames.</div>
+        </div>
+      </div>
+
+      <hr class="script-div">
+
+      <div class="script-line">
+        <div class="sl-time">3 – 13s</div>
+        <div class="sl-body">
+          <div class="sl-type">DESENVOLVIMENTO — Portfólio em ritmo acelerado</div>
+          <div class="sl-visual">Cortes rápidos de 1–2s por produto. Pisos, revestimentos, móveis, marmoraria. Trilha com energia. Volume e variedade são a mensagem.</div>
+          <div class="sl-copy">Pisos. Revestimentos. Móveis. Marmoraria. Tudo com condição especial esse mês na Calábria.</div>
+          <div class="sl-screen">Cada palavra aparece na tela junto com o produto correspondente.</div>
+        </div>
+      </div>
+
+      <hr class="script-div">
+
+      <div class="script-line">
+        <div class="sl-time">13 – 20s</div>
+        <div class="sl-body">
+          <div class="sl-type">CTA — Ação imediata</div>
+          <div class="sl-visual">Fundo vermelho Calábria. Logo. Endereço grande e claro na tela.</div>
+          <div class="sl-copy">A gente tá aqui na Rodovia Ernani do Amaral Peixoto, Km 21, bem do lado do Supermarket. Vem hoje ou chama no WhatsApp — a condição é real e acaba no dia 31.</div>
+          <div class="sl-screen">Botão: "Como Chegar" + "Falar no WhatsApp" · Endereço completo fixo na tela: "Rod. Ernani do Amaral Peixoto, Km 21 — ao lado do Supermarket."</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="triggers">
+      <div class="tg-title">Gatilhos utilizados</div>
+      <div class="tg-list">
+        <span class="tg">Urgência real (prazo 31/03)</span>
+        <span class="tg">Escassez temporal</span>
+        <span class="tg">Prova de oferta ("condição é real")</span>
+        <span class="tg">Conveniência local</span>
+        <span class="tg">CTA duplo (visita + WhatsApp)</span>
+      </div>
+    </div>
+    <div class="sc2-tech loja">
+      <div class="ti"><strong>Duração:</strong> 18–20s</div>
+      <div class="ti"><strong>Formato:</strong> Reels 9:16</div>
+      <div class="ti"><strong>Objetivo Meta:</strong> Mensagens / Leads</div>
+      <div class="ti"><strong>Audiência:</strong> Warm · Quem viu o Roteiro 01</div>
+      <div class="ti"><strong>CTA:</strong> Click-to-WhatsApp + Click-to-Maps</div>
+      <div class="ti"><strong>Veicular em:</strong> Reels · Facebook Feed · Stories</div>
+      <div class="ti"><strong>Obs:</strong> Remarketing Camada 1 e 2 — prioridade após dia 15</div>
+    </div>
+  </div>
+
+  <!-- ══ GRUPO 2: PISO ══ -->
+  <div class="glabel">🏠 Venda de Piso — Roteiros 03 e 04</div>
+
+  <!-- ── ROTEIRO 03 ── -->
+  <div class="sc2 piso">
+    <div class="sc2-bar">
+      <div class="sc2-num">03</div>
+      <div class="sc2-label">Piso · Dor + Transformação + Especialista</div>
+    </div>
+    <div class="sc2-title">
+      Piso como elemento de transformação — ativar desejo e eliminar o medo de errar na escolha
+    </div>
+
+    <div class="script-body">
+
+      <div class="script-line">
+        <div class="sl-time">0 – 4s</div>
+        <div class="sl-body">
+          <div class="sl-type">ABERTURA — Dor + identificação imediata</div>
+          <div class="sl-visual">Cômodo com piso antigo ou neutro, sem vida. Pausa de 1s. Corte rápido para o mesmo cômodo com piso novo — clara diferença visual.</div>
+          <div class="sl-copy">Sabe quando o ambiente parece que tá faltando alguma coisa? Na maioria das vezes, é o piso.</div>
+          <div class="sl-screen">Sem texto na abertura — deixar a imagem falar. Voz calma, tom de especialista.</div>
+        </div>
+      </div>
+
+      <hr class="script-div">
+
+      <div class="script-line">
+        <div class="sl-time">4 – 25s</div>
+        <div class="sl-body">
+          <div class="sl-type">DESENVOLVIMENTO — Variedade + eliminação do risco</div>
+          <div class="sl-visual">Tour pelos pisos da loja. Closes em texturas — porcelanato, cerâmica, vinílico, madeira. Ambientes montados: sala, cozinha, banheiro. Vendedor auxiliando cliente ao vivo por 3–4s.</div>
+          <div class="sl-copy">Na Calábria você encontra pisos para todos os estilos — do rústico ao sofisticado. E a nossa equipe te ajuda a escolher o que fica perfeito no seu espaço, sem medo de errar.</div>
+          <div class="sl-screen">Texto na tela (sequência): "Cerâmica · Porcelanato · Vinílico · Madeira" · "Atendimento especializado."</div>
+        </div>
+      </div>
+
+      <hr class="script-div">
+
+      <div class="script-line">
+        <div class="sl-time">25 – 38s</div>
+        <div class="sl-body">
+          <div class="sl-type">CTA — Benefício + Mês do Consumidor</div>
+          <div class="sl-visual">Fundo vermelho Calábria ou ambiente transformado em tela cheia. Logo visível.</div>
+          <div class="sl-copy">Esse mês os pisos estão com condições especiais do Mês do Consumidor. Manda mensagem, conta como é o seu espaço — a gente te manda as melhores opções.</div>
+          <div class="sl-screen">Botão: "Quero ver opções de piso" → abre WhatsApp com mensagem pré-preenchida: "Oi! Quero ver opções de piso para o meu ambiente."</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="triggers">
+      <div class="tg-title">Gatilhos utilizados</div>
+      <div class="tg-list">
+        <span class="tg">Identificação com a dor</span>
+        <span class="tg">Autoridade / especialista</span>
+        <span class="tg">Eliminação do medo de errar</span>
+        <span class="tg">Variedade (para todos os estilos)</span>
+        <span class="tg">Urgência (Mês do Consumidor)</span>
+        <span class="tg">CTA de benefício, não de produto</span>
+      </div>
+    </div>
+    <div class="sc2-tech piso">
+      <div class="ti"><strong>Duração:</strong> 35–40s</div>
+      <div class="ti"><strong>Formato:</strong> Reels 9:16</div>
+      <div class="ti"><strong>Objetivo Meta:</strong> Engajamento / Mensagens</div>
+      <div class="ti"><strong>Audiência:</strong> Cold + Warm · Maricá + 15km</div>
+      <div class="ti"><strong>CTA:</strong> Click-to-WhatsApp com mensagem pré-preenchida</div>
+      <div class="ti"><strong>Veicular em:</strong> Reels · Feed Instagram · Facebook</div>
+    </div>
+  </div>
+
+  <!-- ── ROTEIRO 04 ── -->
+  <div class="sc2 piso">
+    <div class="sc2-bar">
+      <div class="sc2-num">04</div>
+      <div class="sc2-label">Piso · Prova Social + Resultado real + Urgência</div>
+    </div>
+    <div class="sc2-title">
+      Resultado real de cliente — prova social do piso para converter lead quente com urgência
+    </div>
+
+    <div class="script-body">
+
+      <div class="script-line">
+        <div class="sl-time">0 – 3s</div>
+        <div class="sl-body">
+          <div class="sl-type">ABERTURA — Resultado real como prova</div>
+          <div class="sl-visual">Foto ou vídeo do ambiente real de uma cliente — antes e depois lado a lado ou em transição. Alta qualidade de imagem. O resultado deve ser impactante e imediato.</div>
+          <div class="sl-copy">Olha como ficou a sala dessa cliente depois de trocar o piso aqui na Calábria.</div>
+          <div class="sl-screen">Texto na tela: "Cliente real · Maricá." — credibiliza e localiza.</div>
+        </div>
+      </div>
+
+      <hr class="script-div">
+
+      <div class="script-line">
+        <div class="sl-time">3 – 18s</div>
+        <div class="sl-body">
+          <div class="sl-type">DESENVOLVIMENTO — Experiência sem estresse + detalhe do produto</div>
+          <div class="sl-visual">Close no piso — textura, brilho, acabamento. Se possível, 5–8s de depoimento rápido da própria cliente. Corte para o produto na gôndola da loja.</div>
+          <div class="sl-copy">Ela escolheu o porcelanato com a ajuda da nossa equipe e ficou exatamente como queria. Sem estresse, sem erro, sem surpresa.</div>
+          <div class="sl-screen">Texto: "Atendimento que elimina o risco." · "Calábria — desde 1994."</div>
+        </div>
+      </div>
+
+      <hr class="script-div">
+
+      <div class="script-line">
+        <div class="sl-time">18 – 28s</div>
+        <div class="sl-body">
+          <div class="sl-type">CTA — Urgência + desejo de resultado igual</div>
+          <div class="sl-visual">Tela vermelha Calábria. Texto grande animado. Número e botão visíveis.</div>
+          <div class="sl-copy">Quer o mesmo no seu espaço? No Mês do Consumidor os pisos estão com condição especial. Só até dia 31. Chama agora.</div>
+          <div class="sl-screen">Botão: "Quero esse resultado" → WhatsApp. Endereço e número em tela.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="triggers">
+      <div class="tg-title">Gatilhos utilizados</div>
+      <div class="tg-list">
+        <span class="tg">Prova social (resultado real)</span>
+        <span class="tg">Identificação ("quer o mesmo?")</span>
+        <span class="tg">Confiança (sem erro, sem surpresa)</span>
+        <span class="tg">Autoridade local (desde 1994)</span>
+        <span class="tg">Urgência hard (prazo + "chama agora")</span>
+      </div>
+    </div>
+    <div class="sc2-tech piso">
+      <div class="ti"><strong>Duração:</strong> 25–30s</div>
+      <div class="ti"><strong>Formato:</strong> Reels 9:16</div>
+      <div class="ti"><strong>Objetivo Meta:</strong> Mensagens / Leads</div>
+      <div class="ti"><strong>Audiência:</strong> Warm · Quem viu o Roteiro 03 ou interagiu</div>
+      <div class="ti"><strong>CTA:</strong> Click-to-WhatsApp · "Quero esse resultado"</div>
+      <div class="ti"><strong>Veicular em:</strong> Reels · Stories · Facebook Feed</div>
+      <div class="ti"><strong>Obs:</strong> Usar depoimento real de cliente se disponível — aumenta conversão</div>
+    </div>
+  </div>
+
+  <!-- NOTA FINAL -->
+  <div class="insight">
+    <div class="ii">🔑</div>
+    <p><strong>Produção:</strong> Roteiros 01 e 02 (loja física) podem ser gravados com celular em ~1h. Roteiros 03 e 04 (piso) precisam de imagens do estoque e, idealmente, de um antes &amp; depois real — priorize buscar um cliente que aceite ceder fotos para o Roteiro 04.</p>
+  </div>
+
+</div><!-- /content -->
+</div><!-- /tab roteiros -->
+
+<script>
+  function switchTab(id, btn) {
+    document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    btn.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+</script>
+</body>
+</html>
